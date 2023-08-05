@@ -1,0 +1,9 @@
+{% if yazilar %}
+<ul>
+  {% for yazi in yazilar %}
+  <li><a href="{% url 'yazi' yazi.id %}">{{ yazi.isim }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
