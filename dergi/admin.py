@@ -6,8 +6,26 @@ from .models import *
 
 @admin.register(Yazi)
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ["isim"]
-    search_fields = ["isim"]
+    list_display = ["title"]
+    search_fields = ["title"]
 
     class Meta:
         Yazi
+
+
+@admin.register(Yazar)
+class InfoAdmin(admin.ModelAdmin):
+    list_display = ["isim"]
+    search_fields = ["isim", "soyisim"]
+
+    class Meta:
+        Yazar
+
+
+@admin.register(Konu)
+class InfoAdmin(admin.ModelAdmin):
+    list_display = ["konu_isim"]
+    search_fields = ["konu_isim"]
+
+    class Meta:
+        Konu

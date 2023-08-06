@@ -1,7 +1,7 @@
 {% if yazilar %}
 <ul>
   {% for yazi in yazilar %}
-  <li><a href="{% url 'yazi' yazi.id %}">{{ yazi.isim }}</a></li>
+  <li><a href="{% url 'yazi' yazi.id %}">{{ yazi.title }}</a></li>
   {% endfor %}
 </ul>
 {% else %}

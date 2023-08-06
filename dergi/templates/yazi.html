@@ -1,3 +1,7 @@
-{{yazi.isim}} ın yazmış olduğu yazı: {{yazi.title}} , {{begeni.count}}
+{{yazar.isim}} {{yazar.soyisim}} ın yazmış olduğu yazı: {{yazi.title}} ,
+{{yazi.likes}}
 
-<button type="button" onclick="begeni.increase()">Click Me!</button>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" value="like">Click Me!</button>
+</form>

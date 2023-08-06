@@ -13,6 +13,11 @@ def index(request):
 
 def yazi(request, yazi_id):
     yazi = Yazi.objects.get(pk=yazi_id)
-    begeni = yazi.begeni_set.all()
-    context = {"yazi": yazi, "begeni": begeni}
+    yazar = yazi.yazar
+
+    context = {"yazi": yazi, "yazar": yazar}
+
+    if request.method == "POST":
+        yazi.increment()
+
     return render(request, "yazi.html", context)
