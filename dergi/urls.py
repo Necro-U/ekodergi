@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<int:yazi_id>/", views.yazi, name="yazi"),
+    path("yazilar<int:yazi_id>/", views.yazi, name="yazi"),
+    path("konular/<int:konu_id>/", views.konu, name="konu"),
 ]

@@ -29,6 +29,7 @@ class Yazi(models.Model):
     date = models.DateTimeField("Gönderilme Tarihi", default=timezone.now())
     likes = models.IntegerField("Beğeni Sayısı", default=0)
     yazar = models.ForeignKey(Yazar, on_delete=models.CASCADE)
+    yazi_image = models.ImageField("Yazı Footğrafı", blank=True)
 
     def __str__(self):
         return self.title
