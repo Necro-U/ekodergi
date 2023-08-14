@@ -14,7 +14,6 @@ def index(request):
 def yazi(request, yazi_id):
     yazi = Yazi.objects.get(pk=yazi_id)
     yazar = yazi.yazar
-
     context = {"yazi": yazi, "yazar": yazar}
 
     if request.method == "POST" and request.POST["like"]:
@@ -29,3 +28,7 @@ def konu(request, konu_id):
     context = {"konu": konu, "yazarlar": yazarlar}
 
     return render(request, "konu.html", context)
+
+
+def new_yazi(request):
+    icerik = str()

@@ -1,7 +1,22 @@
-{{yazar.isim}} {{yazar.soyisim}} ın yazmış olduğu yazı: {{yazi.title}} ,
-{{yazi.likes}}
+{% include 'index.html' %}
 
-<form method="POST">
-  {% csrf_token %}
-  <button type="submit" value="like" name="like">Click Me!</button>
-</form>
+{% block navigator %} 
+{% endblock navigator %}
+<div style="display: flex;justify-content: center;">
+<div class="card yazi col-md-9">
+  <div class="card-header card-baslik">
+    {{ yazi.title }}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{yazi.icerik}}</p>
+      <div style="display: flex;justify-content: space-between;">
+          <!-- <img src="{{yazi.yazar.image.url}}" alt=""> -->
+          <p class="info" >{{yazi.yazar.isim}} {{yazi.yazar.soyisim}} </p>
+          <p class="info"> {{yazi.date}} </p>
+      </div>
+      <!-- <footer class="" {{yazi.yazar.isim}} {{yazi.yazar.soyisim}}  ></footer> -->
+    </blockquote>
+  </div>
+</div>
+</div>
