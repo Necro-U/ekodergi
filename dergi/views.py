@@ -30,5 +30,28 @@ def konu(request, konu_id):
     return render(request, "konu.html", context)
 
 
+def login(request):
+    if not request.user.is_authenticated:
+        form = LoginForm(request.POST or None)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username,
+            password=password
+            )
+            if user is not None :
+                auth_login(request, user)
+                return redirect("home")
+            else:
+                messages.error(
+                    request,"Kullanıcı adı veya şifre hatalı."
+                    )
+    else:
+        return render (
+            request,
+            'login.html', {'form':""})
+            
+
+
 def new_yazi(request):
     icerik = str()
