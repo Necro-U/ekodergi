@@ -3,8 +3,9 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("anasayfa/", views.index, name="index"),
     path("yazilar/<int:yazi_id>/", views.yazi, name="yazi"),
     path("konular/<int:konu_id>/", views.konu, name="konu"),
-    path("login",views.login,name="giris")
+    path("login/",views.login,name="giris"),
+    path("kayit-ol/",views.sign_up,name="kayitol")
 ]
