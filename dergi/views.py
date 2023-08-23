@@ -1,9 +1,12 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from .models import *
 from Globals import *
 from .forms import *
-from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -52,25 +55,57 @@ def konu(request, konu_id):
 #         return render (
 #             request,
 #             'login.html', {'form':""})
-            
+
+
+def register(request):
+
+    form = RegisterForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+
+        newUser = User(username=username)
+        newUser.set_password(password)
+
+        newUser.save()
+        login(request, newUser)
+        messages.success(request, "You have successfully registered")
+
+        return redirect("index")
+
+    context = {"form": form}
+    return render(request, "register.html", context)
+
+
 def sign_up(request):
     print(request.method)
 
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST) 
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        # form = UserCreationForm(request.POST)
         print(form.data)
-        print(form.error_messages)
+        # print(form.error_messages)
         if form.is_valid():
-            user = form.save()
-            login(request,user)
-            return redirect("anasayfa")
+            form.save()
+            form.clean()
+            username = form.cleaned_data.get("username")
+            password1 = form.cleaned_data.get("password1")
+            # user = authenticate(username=username, password1=password1)
+            user = User(username=username)
+            user.set_password(password1)
+            login(request, user)
+            print(redirect("index"))
+            return redirect("index")
+        else:
+            print("form is not valid")
+            return redirect("kayitol")
     else:
         print("ase")
-        form = RegistrationForm()
-        context = {
-            "form" : form
-        }
-        return render(request,"sign_up.html",context)
+        form = UserCreationForm()
+        context = {"form": form}
+        print(render(request, "sign_up.html", context))
+        return render(request, "sign_up.html", context)
+
 
 def new_yazi(request):
     icerik = str()
