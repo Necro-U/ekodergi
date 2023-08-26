@@ -21,5 +21,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("dergi.urls")),
     path("user/", include("user.urls")),
-    path("", include("django.contrib.auth.urls")),
 ]
