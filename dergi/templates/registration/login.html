@@ -1,5 +1,7 @@
-{% extends 'include/base.html' %} {% load crispy_forms_tags %} {% block content%} {% csrf_token %}
-<form method="post">{{form|crispy}}</form>
-<p>Hesabınız yok mu? <a href="/sign-up"> Burdan</a> oluşturun</p>
+{% extends 'include/base.html' %} {% load crispy_forms_tags %} 
+{% block content%} {% csrf_token %}
+<form method="post">{{form|crispy}}
+<p>Hesabınız yok mu? <a href="/user/sign-up"> Burdan</a> oluşturun</p>
 <button class="btn btn-success" type="submit">Giriş Yap</button>
+</form>
 {% endblock %}
