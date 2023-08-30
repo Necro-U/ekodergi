@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Yazar
+from .models import *
 from django.forms import Textarea
 
 # Register your models here.
@@ -49,3 +49,14 @@ class YazarAdminConfig(UserAdmin):
 
 
 admin.site.register(Yazar, YazarAdminConfig)
+
+
+@admin.register(Yazi)
+class InfoAdmin(admin.ModelAdmin):
+    list_display = ["title", "content", "yazar", "created_date"]
+    list_display_links = ["title", "yazar"]
+    search_fields = ["title"]
+    list_filter = ["created_date"]
+
+    class Meta:
+        model = Yazi

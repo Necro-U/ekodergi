@@ -111,3 +111,7 @@ background: linear-gradient(0deg, rgba(255,186,33,0.3785889355742297) 0%, rgba(2
 .unsigned-a:hover {
     color: #46c44a;
 }
+
+.invisible{
+    display: none;
+}

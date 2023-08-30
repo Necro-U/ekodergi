@@ -6,7 +6,6 @@ from django.utils import timezone
 
 class YazarManager(BaseUserManager):
     def create_user(self, email, username, first_name, password, category, **others):
-
         if not email:
             raise ValueError(gettext_lazy("You must provide an email "))
 
@@ -53,3 +52,14 @@ class Yazar(AbstractUser, PermissionsMixin):
 
     def __str__(self) -> str:
         return self.username
+
+
+class Yazi(models.Model):
+    yazar = models.ForeignKey("Yazar", on_delete=models.CASCADE)
+    title = models.CharField(max_length=100, default="", name="title")
+    content = models.TextField(max_length=2000, default="", name="content")
+    created_date = models.DateTimeField(default=timezone.now())
+    # image = models.ImageField(upload_to=f"yazilar/")
+
+    def __str__(self) -> str:
+        return self.title

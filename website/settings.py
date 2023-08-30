@@ -144,3 +144,5 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/user/login"
 
 AUTH_USER_MODEL = "user.Yazar"
+
+MEDIA_ROOT = "/static/images"
