@@ -96,3 +96,18 @@ background: linear-gradient(0deg, rgba(255,186,33,0.3785889355742297) 0%, rgba(2
 @media (max-width: 767px){
     
 }
+
+.signed-a{
+    color: #aaa;
+}
+.signed-a:hover {
+    color: #c44646;
+}
+
+
+.unsigned-a{
+    color: #aaa;
+}
+.unsigned-a:hover {
+    color: #46c44a;
+}

@@ -8,26 +8,44 @@ from django.forms import Textarea
 
 class YazarAdminConfig(UserAdmin):
     model = Yazar
-    search_fields = ("email", "username", "first_name")
-    list_filter = ("email", "username", "first_name", "is_active", "is_staff")
+    search_fields = ("username", "email", "first_name")
+    list_filter = ("username", "email", "first_name", "is_active", "is_staff")
     ordering = ("-start_date",)
     list_display = (
-        "email",
         "username",
+        "email",
         "first_name",
         "is_active",
         "is_staff",
     )
 
     fieldsets = (
-        (None, {"fields": ("email", "username", "password", "first_name", "category")}),
+        (None, {"fields": ("username", "email", "password", "first_name", "category")}),
         ("Permissions", {"fields": ("is_active", "is_staff")}),
-        ("Personal", {"fields": ("about",)}),
+        ("Personal", {"fields": ("description",)}),
     )
 
     formfield_overrides = {
         Yazar.description: {"widget": Textarea(attrs={"rows": 10, "cols": 40})},
     }
+    add_fieldsets = [
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "username",
+                    "first_name",
+                    "category",
+                    "password1",
+                    "password2",
+                    "is_staff",
+                    "is_active",
+                ),
+            },
+        )
+    ]
 
 
 admin.site.register(Yazar, YazarAdminConfig)
