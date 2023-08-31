@@ -1,2 +1,10 @@
-{% extends 'include/base.html' %} {% block content %} {% for yazi in yazis %}
-{{yazi.title}} {{yazi.content}} {% endfor %} {% endblock content %}
+{% extends 'include/base.html' %} 
+{% load static %} 
+{% block content %} 
+{% for yazi in yazis %}
+<div class="card yazilar-card">
+  <div class="title">{{yazi.title}}</div>
+
+  <div class="content">{{yazi.content}}</div>
+</div>
+{% endfor %} {% endblock content %}

@@ -59,3 +59,9 @@ def show_yazis(request):
     user = Yazar.objects.get(username=request.user)
     yazis = user.yazi_set.all()
     return render(request, "yazilar/yazi_galeri.html", {"yazis": yazis})
+
+
+def show_yazi(request, id):
+    yazi = Yazi.objects.get(id=id)
+    context = {"yazi": yazi}
+    return render(request, f"yazilar/yazi.html", context)

@@ -59,7 +59,7 @@ class Yazi(models.Model):
     title = models.CharField(max_length=100, default="", name="title")
     content = models.TextField(max_length=2000, default="", name="content")
     created_date = models.DateTimeField(default=timezone.now())
-    # image = models.ImageField(upload_to=f"yazilar/")
 
+    # image = models.ImageField(upload_to=f"yazilar/")
     def __str__(self) -> str:
         return self.title

@@ -1,0 +1,369 @@
+
+/* Created with https://www.css-gradient.com 
+background: #161616;*/
+
+@font-face {
+    font-family: 'playfair';
+    src: url(.playfair/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf);
+    src: url(.playfair/fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-Black.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-BlackItalic.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-Bold.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-BoldItalic.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-ExtraBold.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-ExtraBoldItalic.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-Italic.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-Medium.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-MediumItalic.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-Regular.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-SemiBold.ttf);
+    src: url(.playfair/fonts/Playfairstatic/PlayfairDisplay-SemiBoldItalic.ttf);
+  }
+@font-face {
+    font-family: "akrobat";
+    src: url(./fonts/akrobat/Akrobat-Black.otf);
+    src: url(./fonts/akrobat/Akrobat-Black.otf);
+    src: url(./fonts/akrobat/Akrobat-ExtraBold.otf);
+    src: url(./fonts/akrobat/Akrobat-ExtraLight.otf);
+    src: url(./fonts/akrobat/Akrobat-Light.otf);
+    src: url(./fonts/akrobat/Akrobat-Regular.otf);
+    src: url(./fonts/akrobat/Akrobat-SemiBold.otf);
+    src: url(./fonts/akrobat/Akrobat-Thin.otf);
+}
+
+@font-face {
+    font-family: "cellosans";
+    src: url(./fonts/cellosans/CelloSans-Bold.ttf);
+    src: url(./fonts/cellosans/CelloSans-BoldItalic.ttf);
+    src: url(./fonts/cellosans/CelloSans-Bold.ttf);
+    src: url(./fonts/cellosans/CelloSans-ExtraBoldItalic.ttf);
+    src: url(./fonts/cellosans/CelloSans-ExtraLight.ttf);
+    src: url(./fonts/cellosans/CelloSans-ExtraLightItalic.ttf);
+    src: url(./fonts/cellosans/CelloSans-Italic.ttf);
+    src: url(./fonts/cellosans/CelloSans-Light.ttf);
+    src: url(./fonts/cellosans/CelloSans-LightItalic.ttf);
+    src: url(./fonts/cellosans/CelloSans-Medium.ttf);
+    src: url(./fonts/cellosans/CelloSans-MediumItalic.ttf);
+    src: url(./fonts/cellosans/CelloSans-Regular.ttf);
+    src: url(./fonts/cellosans/CelloSans-SemiBold.ttf);
+    src: url(./fonts/cellosans/CelloSans-SemiBoldItalic.ttf);
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.cardh1{
+    color:#fff;
+}
+.lead{
+    color:#aaa;
+}
+
+.wrapper{margin:10vh}
+
+
+.card{
+    border: none;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    overflow:hidden;
+    border-radius:20px;
+    min-height:450px;
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+
+    @media (max-width: 768px) {
+    min-height:350px;
+}
+
+@media (max-width: 420px) {
+    min-height:300px;
+}
+
+    &.card-has-bg{
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    background-size:120%;
+    background-repeat:no-repeat;
+    background-position: center center;
+    &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);}
+
+    &:hover {
+    transform: scale(0.98);
+        box-shadow: 0 0 5px -2px rgba(0,0,0,0.3);
+    background-size:130%;
+        transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    .card-img-overlay {
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        background: rgb(255,186,33);
+        background: linear-gradient(0deg, rgba(255,186,33,0.5) 0%, rgba(255,186,33,1) 100%);
+        }
+    }
+}
+    .card-footer{
+    background: none;
+    border-top: none;
+    .media{
+        img{
+        border:solid 3px rgba(255,255,255,0.3);
+        }
+    }
+    }
+    .card-title{font-weight:800}
+    .card-meta{color:rgba(0,0,0,0.3);
+    text-transform:uppercase;
+    font-weight:500;
+    letter-spacing:2px;}
+    .card-body{ 
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    
+
+    }
+    &:hover {
+    .card-body{
+        margin-top:30px;
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    cursor: pointer;
+    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+    .card-img-overlay {
+    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    background: rgb(255,186,33);
+background: linear-gradient(0deg, rgba(255,186,33,0.3785889355742297) 0%, rgba(255,186,33,1) 100%);
+}
+}
+@media (max-width: 767px){
+    
+}
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+
+.signed-a{
+    color: #aaa;
+}
+.signed-a:hover {
+    color: #c44646;
+}
+
+
+.unsigned-a{
+    color: #aaa;
+}
+.unsigned-a:hover {
+    color: #46c44a;
+}
+
+.invisible{
+    display: none;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    font-family: monospace;
+    font-size: x-large;
+    font-weight: 900;
+    padding: 20px;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    font-family: "cellosans";
+    padding: 25px 20px;
+}
+
+
+.yazilar-card{
+    background-color: salmon;
+    margin: 20px 20px;
+}
+
+.spec-title{
+    background-color: #aaa;
+}
+
+.spec-content{
+    background-color: #c44646;
+}

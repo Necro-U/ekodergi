@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dergi.apps.DergiConfig",
+    "fontawesomefree",
     "user",
     "bootstrap4",
     "crispy_forms",
@@ -110,6 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# DJANGO_ICONS = {
+#     "ICONS": {
+#         "facebook": {"name": "fa fa-facebook"},
+#         "twitter": {"name": "fa fa-twitter"},
+#         "linkedin": {"name": "fa fa-linkedin"},
+#     },
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -131,6 +139,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 
 STATICFILES_DIRS = [
+    BASE_DIR / "statici",
     BASE_DIR / (STATIC_ROOT + "images/"),
     BASE_DIR / (STATIC_ROOT + "css/"),
     BASE_DIR / (STATIC_ROOT + "js/"),

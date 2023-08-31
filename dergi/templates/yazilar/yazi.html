@@ -1,0 +1,14 @@
+{% extends 'include/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+
+    <div class="spec-title">
+    <h1>{{yazi.title}}</h1>
+    </div>
+    <div class="spec-content">            
+    {{yazi.content}}    
+    </div>
+</div>
+
+{% endblock content %}
