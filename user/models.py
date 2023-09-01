@@ -32,14 +32,18 @@ class YazarManager(BaseUserManager):
 
 
 class Yazar(AbstractUser, PermissionsMixin):
-    CATEGORIES = {
-        ("teknoloji", "teknoloji"),
-        ("ekonomi", "ekonomi"),
-        ("mutfak", "mutfak"),
-        ("hikaye", "hikaye"),
-    }
+    # CATEGORIES = {
+    #     ("teknoloji", "teknoloji"),
+    #     ("ekonomi", "ekonomi"),
+    #     ("mutfak", "mutfak"),
+    #     ("hikaye", "hikaye"),
+    # }
+
+    # CATEGORIES = models.ForeignKey("Kategori", on_delete=models.CASCADE)
+
     email = models.EmailField(unique=True)
-    category = models.CharField(max_length=100, choices=CATEGORIES, default="teknoloji")
+    # category = models.CharField(max_length=100, choices=CATEGORIES, default="teknoloji")
+    category = models.ForeignKey("Kategori", on_delete=models.CASCADE)
     description = models.TextField(
         "Description", max_length=300, default="", blank=True
     )
@@ -59,7 +63,14 @@ class Yazi(models.Model):
     title = models.CharField(max_length=100, default="", name="title")
     content = models.TextField(max_length=2000, default="", name="content")
     created_date = models.DateTimeField(default=timezone.now())
+    image = models.ImageField(
+        upload_to=f"yazilar/", default="/static/images/default_user_image.jpg"
+    )
 
-    # image = models.ImageField(upload_to=f"yazilar/")
     def __str__(self) -> str:
         return self.title
+
+
+class Kategori(models.Model):
+    name = models.CharField(max_length=100,default="Teknoloji",name="isim")
+    

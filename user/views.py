@@ -23,12 +23,12 @@ def sign_up(request):
     return render(request, "registration/sign_up.html", {"form": form})
 
 
-@login_required(login_url="user:login")
+@login_required(login_url="/user/login")
 def profile(request):
     return render(request, "user/profile.html", {})
 
 
-@login_required(login_url="user:login")
+@login_required(login_url="/user/login")
 def create_yazi(request):
     print(request.method)
 
@@ -52,7 +52,7 @@ def create_yazi(request):
     return render(request, "yazilar/yazi_ekle.html", {"form": form})
 
 
-login_required(login_url="user:login")
+login_required(login_url="/user/login")
 
 
 def show_yazis(request):
