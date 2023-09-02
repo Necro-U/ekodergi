@@ -11,7 +11,11 @@ class YazarManager(BaseUserManager):
 
         self.normalize_email(email)
         user = self.model(
-            email=email, username=username, first_name=first_name, category=category
+            email=email,
+            username=username,
+            first_name=first_name,
+            category=category,
+            **others
         )
         user.set_password(password)
         user.save()
