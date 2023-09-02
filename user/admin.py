@@ -60,3 +60,14 @@ class InfoAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Yazi
+
+
+@admin.register(Kategori)
+class InfoAdmin(admin.ModelAdmin):
+    list_display = ["isim"]
+    list_display_links = ["isim"]
+    search_fields = ["isim"]
+    list_filter = ["isim"]
+
+    class Meta:
+        model = Kategori

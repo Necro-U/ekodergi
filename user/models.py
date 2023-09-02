@@ -4,14 +4,26 @@ from django.utils.translation import gettext_lazy
 from django.utils import timezone
 
 
+class Kategori(models.Model):
+    name = models.CharField(max_length=100, name="isim", unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class YazarManager(BaseUserManager):
-    def create_user(self, email, username, first_name, password, category, **others):
+    def create_user(self, email, username, first_name, password, **others):
         if not email:
             raise ValueError(gettext_lazy("You must provide an email "))
 
+        # obj = Kategori.objects.create(isim="Ma")
+
         self.normalize_email(email)
         user = self.model(
-            email=email, username=username, first_name=first_name, category=category
+            email=email,
+            username=username,
+            first_name=first_name,
+            category=Kategori.objects.get(isim="Teknoloji"),
         )
         user.set_password(password)
         user.save()
@@ -43,7 +55,9 @@ class Yazar(AbstractUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
     # category = models.CharField(max_length=100, choices=CATEGORIES, default="teknoloji")
-    category = models.ForeignKey("Kategori", on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        "Kategori", on_delete=models.CASCADE, blank=True, null=True
+    )
     description = models.TextField(
         "Description", max_length=300, default="", blank=True
     )
@@ -52,7 +66,7 @@ class Yazar(AbstractUser, PermissionsMixin):
     objects = YazarManager()
 
     EMAIL_FIELD = "email"
-    REQUIRED_FIELDS = ["email", "category", "first_name"]
+    REQUIRED_FIELDS = ["email", "first_name"]
 
     def __str__(self) -> str:
         return self.username
@@ -60,17 +74,14 @@ class Yazar(AbstractUser, PermissionsMixin):
 
 class Yazi(models.Model):
     yazar = models.ForeignKey("Yazar", on_delete=models.CASCADE)
+    # kategori = models.ForeignKey("Kategori", on_delete=models.CASCADE)
     title = models.CharField(max_length=100, default="", name="title")
     content = models.TextField(max_length=2000, default="", name="content")
     created_date = models.DateTimeField(default=timezone.now())
     image = models.ImageField(
-        upload_to=f"yazilar/", default="/static/images/default_user_image.jpg"
+        upload_to="static/images/yazilar/",
+        default="/static/images/default_user_image.jpg",
     )
 
     def __str__(self) -> str:
         return self.title
-
-
-class Kategori(models.Model):
-    name = models.CharField(max_length=100,default="Teknoloji",name="isim")
-    

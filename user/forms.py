@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Yazar, Yazi
+from .models import Yazar, Yazi, Kategori
 
 
 class RegistrationForm(UserCreationForm):
@@ -15,3 +15,9 @@ class NewYazi(forms.ModelForm):
     class Meta:
         model = Yazi
         fields: list[str] = ["title", "content"]
+
+
+class NewCategory(forms.ModelForm):
+    class Meta:
+        model = Kategori
+        fields = ("isim",)

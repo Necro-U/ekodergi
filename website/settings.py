@@ -139,7 +139,6 @@ STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "statici",
     BASE_DIR / (STATIC_ROOT + "images/"),
     BASE_DIR / (STATIC_ROOT + "css/"),
     BASE_DIR / (STATIC_ROOT + "js/"),

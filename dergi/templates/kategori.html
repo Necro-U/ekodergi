@@ -1,0 +1,9 @@
+{% extends "include/base.html" %} {% load crispy_forms_tags %} 
+{% load static %}
+{% block content %} 
+<form method="post">
+    {% csrf_token %} {{form|crispy}}
+  
+    <button class="btn btn-success" type="submit">Kategori Ekle</button>
+  </form>
+{% endblock content %}

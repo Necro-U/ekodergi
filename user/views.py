@@ -10,9 +10,6 @@ def sign_up(request):
     # print(request.method)
     if request.method == "POST":
         form = RegistrationForm(request.POST)
-        # print(form.error_messages)
-        # print(form.is_valid())
-        # print(form.data)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -33,10 +30,6 @@ def create_yazi(request):
     print(request.method)
 
     if request.method == "POST":
-        # yazar = request.POST.get("yazar", "")
-        # baslik = request.POST.get("title", "")
-        # icerik = request.POST.get("icerik", "")
-        # image = request.POST.get("image", "")
         form = NewYazi(request.POST)
         print(form.errors)
         if form.is_valid():
@@ -45,7 +38,7 @@ def create_yazi(request):
             infos.save()
             print(infos.yazar)
             return render(
-                request, f"yazi_galeri/0"
+                request, "/user/yazi_galeri.html"
             )  # Bu yazi galeri profilin yazılarının bulundupu bölüm
     else:
         form = NewYazi()
@@ -65,3 +58,15 @@ def show_yazi(request, id):
     yazi = Yazi.objects.get(id=id)
     context = {"yazi": yazi}
     return render(request, f"yazilar/yazi.html", context)
+
+
+def add_category(request):
+    if request.method == "POST":
+        form = NewCategory(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, "yazilar/yazi_galeri.html", {})
+
+    form = NewCategory()
+
+    return render(request, "kategori.html", {"form": form})
