@@ -2,10 +2,11 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils import timezone
+from website.settings import *
 
 
 class Kategori(models.Model):
-    name = models.CharField(max_length=100, name="isim", unique=True)
+    name = models.CharField(max_length=100, name="name", unique=True)
 
     def __str__(self) -> str:
         return self.name
@@ -23,7 +24,8 @@ class YazarManager(BaseUserManager):
             email=email,
             username=username,
             first_name=first_name,
-            category=Kategori.objects.get(isim="Teknoloji"),
+            category=Kategori.objects.get(name="Teknoloji"),
+            **others
         )
         user.set_password(password)
         user.save()
@@ -44,17 +46,7 @@ class YazarManager(BaseUserManager):
 
 
 class Yazar(AbstractUser, PermissionsMixin):
-    # CATEGORIES = {
-    #     ("teknoloji", "teknoloji"),
-    #     ("ekonomi", "ekonomi"),
-    #     ("mutfak", "mutfak"),
-    #     ("hikaye", "hikaye"),
-    # }
-
-    # CATEGORIES = models.ForeignKey("Kategori", on_delete=models.CASCADE)
-
     email = models.EmailField(unique=True)
-    # category = models.CharField(max_length=100, choices=CATEGORIES, default="teknoloji")
     category = models.ForeignKey(
         "Kategori", on_delete=models.CASCADE, blank=True, null=True
     )
@@ -74,13 +66,12 @@ class Yazar(AbstractUser, PermissionsMixin):
 
 class Yazi(models.Model):
     yazar = models.ForeignKey("Yazar", on_delete=models.CASCADE)
-    # kategori = models.ForeignKey("Kategori", on_delete=models.CASCADE)
     title = models.CharField(max_length=100, default="", name="title")
     content = models.TextField(max_length=2000, default="", name="content")
     created_date = models.DateTimeField(default=timezone.now())
     image = models.ImageField(
-        upload_to="static/images/yazilar/",
-        default="/static/images/default_user_image.jpg",
+        upload_to="images/",
+        default="default_user_image.jpg",
     )
 
     def __str__(self) -> str:

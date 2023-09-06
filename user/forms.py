@@ -20,4 +20,4 @@ class NewYazi(forms.ModelForm):
 class NewCategory(forms.ModelForm):
     class Meta:
         model = Kategori
-        fields = ("isim",)
+        fields = ("name",)

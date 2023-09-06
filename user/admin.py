@@ -53,7 +53,7 @@ admin.site.register(Yazar, YazarAdminConfig)
 
 @admin.register(Yazi)
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ["title", "content", "yazar", "created_date"]
+    list_display = ["title", "content", "yazar", "created_date", "image"]
     list_display_links = ["title", "yazar"]
     search_fields = ["title"]
     list_filter = ["created_date"]
@@ -64,10 +64,10 @@ class InfoAdmin(admin.ModelAdmin):
 
 @admin.register(Kategori)
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ["isim"]
-    list_display_links = ["isim"]
-    search_fields = ["isim"]
-    list_filter = ["isim"]
+    list_display = ["name"]
+    list_display_links = ["name"]
+    search_fields = ["name"]
+    list_filter = ["name"]
 
     class Meta:
         model = Kategori
