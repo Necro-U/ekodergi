@@ -54,8 +54,8 @@ class Yazar(AbstractUser, PermissionsMixin):
     height = models.PositiveIntegerField(default=360)
     width = models.PositiveIntegerField(default=360)
     image = models.ImageField(
-        default=f"{BASE_DIR}/static/images/default_user_image.jpg",
-        upload_to=f"static/images/yazarlar",
+        default="default_user_image.jpg",
+        upload_to="users/",
         height_field="height",
         width_field="width",
     )
