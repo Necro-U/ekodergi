@@ -153,4 +153,5 @@ LOGOUT_REDIRECT_URL = "/user/login"
 
 AUTH_USER_MODEL = "user.Yazar"
 
-MEDIA_ROOT = "/static/images"
+MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
+MEDIA_URL = "/assets/"

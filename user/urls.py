@@ -1,5 +1,8 @@
 from django.urls import path, include
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path("", include("django.contrib.auth.urls")),
@@ -10,3 +13,6 @@ urlpatterns = [
     path("yazi/<str:id>", views.show_yazi, name="yazi"),
     path("kategori", views.add_category, name="kategori_ekle"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
