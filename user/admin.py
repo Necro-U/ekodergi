@@ -11,16 +11,22 @@ class YazarAdminConfig(UserAdmin):
     search_fields = ("username", "email", "first_name")
     list_filter = ("username", "email", "first_name", "is_active", "is_staff")
     ordering = ("-start_date",)
-    list_display = (
-        "username",
-        "email",
-        "first_name",
-        "is_active",
-        "is_staff",
-    )
+    list_display = ("username", "email", "first_name", "is_active", "is_staff", "image")
 
     fieldsets = (
-        (None, {"fields": ("username", "email", "password", "first_name", "category")}),
+        (
+            None,
+            {
+                "fields": (
+                    "username",
+                    "email",
+                    "password",
+                    "first_name",
+                    "category",
+                    "image",
+                )
+            },
+        ),
         ("Permissions", {"fields": ("is_active", "is_staff")}),
         ("Personal", {"fields": ("description",)}),
     )
@@ -38,6 +44,7 @@ class YazarAdminConfig(UserAdmin):
                     "username",
                     "first_name",
                     "category",
+                    "image",
                     "password1",
                     "password2",
                     "is_staff",
@@ -64,10 +71,10 @@ class InfoAdmin(admin.ModelAdmin):
 
 @admin.register(Kategori)
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ["isim"]
-    list_display_links = ["isim"]
-    search_fields = ["isim"]
-    list_filter = ["isim"]
+    list_display = ["name"]
+    list_display_links = ["name"]
+    search_fields = ["name"]
+    list_filter = ["name"]
 
     class Meta:
         model = Kategori

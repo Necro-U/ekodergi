@@ -2,10 +2,11 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils import timezone
+from website.settings import *
 
 
 class Kategori(models.Model):
-    name = models.CharField(max_length=100, name="isim", unique=True)
+    name = models.CharField(max_length=100, name="name", unique=True)
 
     def __str__(self) -> str:
         return self.name
@@ -20,10 +21,7 @@ class YazarManager(BaseUserManager):
 
         self.normalize_email(email)
         user = self.model(
-            email=email,
-            username=username,
-            first_name=first_name,
-            category=Kategori.objects.get(isim="Teknoloji"),
+            email=email, username=username, first_name=first_name, **others
         )
         user.set_password(password)
         user.save()
@@ -44,17 +42,7 @@ class YazarManager(BaseUserManager):
 
 
 class Yazar(AbstractUser, PermissionsMixin):
-    # CATEGORIES = {
-    #     ("teknoloji", "teknoloji"),
-    #     ("ekonomi", "ekonomi"),
-    #     ("mutfak", "mutfak"),
-    #     ("hikaye", "hikaye"),
-    # }
-
-    # CATEGORIES = models.ForeignKey("Kategori", on_delete=models.CASCADE)
-
     email = models.EmailField(unique=True)
-    # category = models.CharField(max_length=100, choices=CATEGORIES, default="teknoloji")
     category = models.ForeignKey(
         "Kategori", on_delete=models.CASCADE, blank=True, null=True
     )
@@ -62,7 +50,14 @@ class Yazar(AbstractUser, PermissionsMixin):
         "Description", max_length=300, default="", blank=True
     )
     start_date = models.DateTimeField(default=timezone.now())
-
+    height = models.PositiveIntegerField(default=360)
+    width = models.PositiveIntegerField(default=360)
+    image = models.ImageField(
+        default=f"{BASE_DIR}/static/images/default_user_image.jpg",
+        upload_to=f"static/images/yazarlar",
+        height_field="height",
+        width_field="width",
+    )
     objects = YazarManager()
 
     EMAIL_FIELD = "email"
